@@ -1,65 +1,45 @@
-Documentación de la API de Mediciones Ambientales
-Esta API proporciona acceso a datos de mediciones ambientales, incluyendo temperatura, humedad y estado de válvulas.
+# Documentación de la API de Mediciones Ambientales
 
-🔧 Instalación y Configuración
+Esta API proporciona acceso a datos de mediciones ambientales como temperatura, humedad y estado de válvulas.
 
-Requisitos previos
+## Requisitos Previos
 
-Node.js (v16 o superior recomendado)
-npm (v9 o superior)
-Pasos para ejecutar el proyecto
+Antes de utilizar la API, asegúrate de tener instalado Node.js y npm en tu sistema.
 
-Clonar el repositorio
-bash
-Copy
-git clone [URL_DEL_REPOSITORIO]
-Instalar dependencias
-bash
-Copy
-npm install
-Iniciar el servidor
-bash
-Copy
-npm run dev
-El servidor estará disponible en:
-🔗 `
-puedes crearme el archivo markdown como tal para copiar el contenido y llevarlo al repositorio
-markdown
-Copy
-# 🌡️ API de Monitoreo Ambiental  
+## Instalación
 
-API para obtener datos de sensores ambientales (temperatura, humedad y estado de válvulas).
+1. Clona el repositorio:
+    
+    ```bash
+    git clone https://github.com/jesuswav/final-project-api
+    ```
+    
+2. Instala las dependencias:
+    
+    ```bash
+    npm install
+    ```
+    
+3. Iniciar el servidor:
+    
+    ```bash
+    npm run dev
+    ```
+    
 
----
+El servidor estará disponible en `http://localhost:3008`.
 
-## 🚀 Requisitos e Instalación
+## Endpoints
 
-### 📋 Prerrequisitos
-- Node.js v16+
-- npm v9+
+### 1. Obtener todas las mediciones
 
-### ⚙️ Configuración
-```bash
-# 1. Clonar repositorio
-git clone https://github.com/tu-usuario/tu-repo.git
+**URL:** `http://localhost:3008/api/mediciones`
 
-# 2. Instalar dependencias
-npm install
+**Método:** `GET`
 
-# 3. Iniciar servidor (modo desarrollo)
-npm run dev
-El servidor estará disponible en:
-🔗 http://localhost:3008
+**Respuesta:**
 
-📊 Endpoints Disponibles
-
-1️⃣ Todas las mediciones
-
-GET /api/mediciones
-
-<details> <summary>📄 Ver respuesta de ejemplo</summary>
-json
-Copy
+```json
 {
     "mediciones": [
         {
@@ -80,14 +60,17 @@ Copy
         }
     ]
 }
-</details>
-2️⃣ Datos de temperatura
+```
 
-GET /api/temperatura
+### 2. Obtener datos de temperatura
 
-<details> <summary>📄 Ver respuesta de ejemplo</summary>
-json
-Copy
+**URL:** `http://localhost:3008/api/temperatura`
+
+**Método:** `GET`
+
+**Respuesta:**
+
+```json
 {
     "temperatura": [
         {
@@ -100,14 +83,17 @@ Copy
         }
     ]
 }
-</details>
-3️⃣ Datos de humedad ambiente
+```
 
-GET /api/humedad
+### 3. Obtener datos de humedad ambiente
 
-<details> <summary>📄 Ver respuesta de ejemplo</summary>
-json
-Copy
+**URL:** `http://localhost:3008/api/humedad`
+
+**Método:** `GET`
+
+**Respuesta:**
+
+```json
 {
     "humedad": [
         {
@@ -120,14 +106,17 @@ Copy
         }
     ]
 }
-</details>
-4️⃣ Datos de humedad de tierra
+```
 
-GET /api/humedad_tierra
+### 4. Obtener datos de humedad de tierra
 
-<details> <summary>📄 Ver respuesta de ejemplo</summary>
-json
-Copy
+**URL:** `http://localhost:3008/api/humedad_tierra`
+
+**Método:** `GET`
+
+**Respuesta:**
+
+```json
 {
     "humedadTierra": [
         {
@@ -140,13 +129,4 @@ Copy
         }
     ]
 }
-</details>
-📌 Estructura de Datos
-
-Campo	Tipo	Descripción	Valores posibles
-id	string	ID único de la medición	-
-humedad_ambiente	string	Porcentaje de humedad ambiente	0.00 - 100.00
-humedad_tierra	string	Porcentaje de humedad en el suelo	0.00 - 100.00
-temperatura	string	Temperatura en °C	-40.00 - 85.00
-hora/fecha	string	Fecha y hora de registro (YYYY-MM-DD HH:MM:SS)	-
-estado_valvula	string	Estado de la válvula	0 (cerrada), 1 (abierta)
+```
