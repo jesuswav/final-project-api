@@ -1,4 +1,4 @@
-# Documentación de la API de Mediciones Ambientales
+# 🚀 Documentación de la API de Mediciones Ambientales
 
 Esta API proporciona acceso a datos de mediciones ambientales como temperatura, humedad y estado de válvulas.
 
@@ -6,7 +6,7 @@ Esta API proporciona acceso a datos de mediciones ambientales como temperatura, 
 
 Antes de utilizar la API, asegúrate de tener instalado Node.js y npm en tu sistema.
 
-## Instalación
+## 💻 Instalación
 
 1. Clona el repositorio:
     
@@ -29,7 +29,7 @@ Antes de utilizar la API, asegúrate de tener instalado Node.js y npm en tu sist
 
 El servidor estará disponible en `http://localhost:3008`.
 
-## Endpoints
+## ☁️ Endpoints
 
 ### 1. Obtener todas las mediciones
 
