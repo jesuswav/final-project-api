@@ -1,113 +1,96 @@
-import { Router } from 'express';
-import { createReadStream } from 'fs';
-import { parse } from 'csv';
-const router = Router()
-// const csv = require('jquery-csv')
-// const datos = fs.readFile('../storage/datos_procesados.csv')
+const { createReadStream } = require('fs');
+const { parse } = require('csv-parse');
 
-export async function getMediciones(req, res) {
-    let results = []
+async function getMediciones(req, res) {
+  let results = [];
 
-    try {
-        createReadStream("./datos_procesados.csv")
-        .pipe(parse({trim: true, skip_empty_lines: true, columns: true}))
-        .on("data", (row) => {
-            results.push(row);
-        })
-        .on("end", () => {
-            res.status(200).json({mediciones: results})
-            console.log("CSV parsing complete");
-        });
-
-    } catch (error) {
-        res.status(500).json({ message: 'Error al obtener los datos'});
-    }
+  try {
+    createReadStream('./datos_procesados.csv')
+      .pipe(parse({ trim: true, skip_empty_lines: true, columns: true }))
+      .on('data', (row) => {
+        results.push(row);
+      })
+      .on('end', () => {
+        res.status(200).json({ mediciones: results });
+        console.log('CSV parsing complete');
+      });
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener los datos' });
+  }
 }
 
-export async function getTemperature(req, res) {
-    let results = []
+async function getTemperature(req, res) {
+  let results = [];
 
-    try {
-        createReadStream("./datos_procesados.csv")
-        .pipe(parse({trim: true, skip_empty_lines: true, columns: true}))
-        .on("data", (row) => {
-            results.push(row);
-        })
-        .on("end", () => {
+  try {
+    createReadStream('./datos_procesados.csv')
+      .pipe(parse({ trim: true, skip_empty_lines: true, columns: true }))
+      .on('data', (row) => {
+        results.push(row);
+      })
+      .on('end', () => {
+        const temperatura = results.map((item) => ({
+          temperatura: item.temperatura,
+          fecha: item.hora,
+        }));
 
-            const temperatura = []
-            
-            results.forEach((item) => {
-                temperatura.push({
-                    "temperatura": item.temperatura,
-                    "fecha": item.hora
-                })
-            })
-
-            res.status(200).json({temperatura})
-            console.log("CSV parsing complete");
-        });
-
-    } catch (error) {
-        res.status(500).json({ message: 'Error al obtener los datos'});
-    }
+        res.status(200).json({ temperatura });
+        console.log('CSV parsing complete');
+      });
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener los datos' });
+  }
 }
 
+async function getHumedad(req, res) {
+  let results = [];
 
-export async function getHumedad(req, res) {
-    let results = []
+  try {
+    createReadStream('./datos_procesados.csv')
+      .pipe(parse({ trim: true, skip_empty_lines: true, columns: true }))
+      .on('data', (row) => {
+        results.push(row);
+      })
+      .on('end', () => {
+        const humedad = results.map((item) => ({
+          humedad: item.temperatura,
+          fecha: item.hora,
+        }));
 
-    try {
-        createReadStream("./datos_procesados.csv")
-        .pipe(parse({trim: true, skip_empty_lines: true, columns: true}))
-        .on("data", (row) => {
-            results.push(row);
-        })
-        .on("end", () => {
-
-            const humedad = []
-            
-            results.forEach((item) => {
-                humedad.push({
-                    "humedad": item.temperatura,
-                    "fecha": item.hora
-                })
-            })
-
-            res.status(200).json({humedad})
-            console.log("CSV parsing complete");
-        });
-
-    } catch (error) {
-        res.status(500).json({ message: 'Error al obtener los datos'});
-    }
+        res.status(200).json({ humedad });
+        console.log('CSV parsing complete');
+      });
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener los datos' });
+  }
 }
 
-export async function getHumedadTierra(req, res) {
-    let results = []
+async function getHumedadTierra(req, res) {
+  let results = [];
 
-    try {
-        createReadStream("./datos_procesados.csv")
-        .pipe(parse({trim: true, skip_empty_lines: true, columns: true}))
-        .on("data", (row) => {
-            results.push(row);
-        })
-        .on("end", () => {
+  try {
+    createReadStream('./datos_procesados.csv')
+      .pipe(parse({ trim: true, skip_empty_lines: true, columns: true }))
+      .on('data', (row) => {
+        results.push(row);
+      })
+      .on('end', () => {
+        const humedad_tierra = results.map((item) => ({
+          humedad_tierra: item.temperatura,
+          fecha: item.hora,
+        }));
 
-            const humedad_tierra = []
-            
-            results.forEach((item) => {
-                humedad_tierra.push({
-                    "humedad_tierra": item.temperatura,
-                    "fecha": item.hora
-                })
-            })
-
-            res.status(200).json({humedad_tierra})
-            console.log("CSV parsing complete");
-        });
-
-    } catch (error) {
-        res.status(500).json({ message: 'Error al obtener los datos'});
-    }
+        res.status(200).json({ humedad_tierra });
+        console.log('CSV parsing complete');
+      });
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener los datos' });
+  }
 }
+
+module.exports = {
+  getMediciones,
+  getTemperature,
+  getHumedad,
+  getHumedadTierra,
+};
