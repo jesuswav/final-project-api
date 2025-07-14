@@ -3,13 +3,13 @@ import { createReadStream } from 'fs';
 import { parse } from 'csv';
 const router = Router()
 // const csv = require('jquery-csv')
-// const datos = fs.readFile('../storage/datosRiego3.csv')
+// const datos = fs.readFile('../storage/datos_procesados.csv')
 
 export async function getMediciones(req, res) {
     let results = []
 
     try {
-        createReadStream("./datosRiego3.csv")
+        createReadStream("./datos_procesados.csv")
         .pipe(parse({trim: true, skip_empty_lines: true, columns: true}))
         .on("data", (row) => {
             results.push(row);
@@ -28,7 +28,7 @@ export async function getTemperature(req, res) {
     let results = []
 
     try {
-        createReadStream("./datosRiego3.csv")
+        createReadStream("./datos_procesados.csv")
         .pipe(parse({trim: true, skip_empty_lines: true, columns: true}))
         .on("data", (row) => {
             results.push(row);
@@ -58,7 +58,7 @@ export async function getHumedad(req, res) {
     let results = []
 
     try {
-        createReadStream("./datosRiego3.csv")
+        createReadStream("./datos_procesados.csv")
         .pipe(parse({trim: true, skip_empty_lines: true, columns: true}))
         .on("data", (row) => {
             results.push(row);
@@ -87,7 +87,7 @@ export async function getHumedadTierra(req, res) {
     let results = []
 
     try {
-        createReadStream("./datosRiego3.csv")
+        createReadStream("./datos_procesados.csv")
         .pipe(parse({trim: true, skip_empty_lines: true, columns: true}))
         .on("data", (row) => {
             results.push(row);
