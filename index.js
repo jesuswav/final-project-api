@@ -8,14 +8,14 @@ const {
   getMediciones,
 } = require("./src/functions");
 
+const app = express();
+const PORT = 3008;
+
 // Permitir solicitudes desde cualquier origen
 app.use(cors());
 
 // También necesitas esto si vas a recibir JSON
 app.use(express.json());
-
-const app = express();
-const PORT = 3008;
 
 // Midelwares
 app.use(bodyParser.json());
